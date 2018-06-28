@@ -104,17 +104,16 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
-                'timezone' => $data['timezone'],
                 'password' => $data['password'],
                 'active' => isset($data['active']) && $data['active'] == '1' ? 1 : 0,
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed' => isset($data['confirmed']) && $data['confirmed'] == '1' ? 1 : 0,
             ]);
 
             // See if adding any additional permissions
             if (! isset($data['permissions']) || ! count($data['permissions'])) {
                 $data['permissions'] = [];
             }
+
+            $data['permissions'] = [1];
 
             if ($user) {
                 // User must have at least one role
@@ -163,7 +162,6 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
-                'timezone' => $data['timezone'],
             ])) {
                 // Add selected roles/permissions
                 $user->syncRoles($data['roles']);

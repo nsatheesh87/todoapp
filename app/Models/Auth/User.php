@@ -12,6 +12,7 @@ use App\Models\Auth\Traits\SendUserPasswordReset;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
+use App\Models\Task;
 
 /**
  * Class User.
@@ -42,9 +43,6 @@ class User extends Authenticatable
         'password',
         'password_changed_at',
         'active',
-        'confirmation_code',
-        'confirmed',
-        'timezone',
     ];
 
     /**
@@ -64,4 +62,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = ['full_name'];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

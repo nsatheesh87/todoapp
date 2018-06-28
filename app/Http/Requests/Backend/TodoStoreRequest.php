@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Backend\Auth\User;
-
+namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class UpdateUserRequest.
+ * Class StoreUserRequest.
  */
-class UpdateUserRequest extends FormRequest
+class TodoStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +15,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->isAdmin();
+        return $this->user();
     }
 
     /**
@@ -27,10 +26,8 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|max:191',
-            'first_name'  => 'required|max:191',
-            'last_name'  => 'required|max:191',
-            'roles' => 'required|array',
+            'title'     => 'required|max:191',
+            'description'  => 'required|max:250'
         ];
     }
 }

@@ -59,17 +59,6 @@
                         </div><!--col-->
                     </div><!--form-group-->
 
-                    <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.timezone'))->class('col-md-2 form-control-label')->for('timezone') }}
-
-                        <div class="col-md-10">
-                            <select name="timezone" id="timezone" class="form-control" required="required">
-                                @foreach (timezone_identifiers_list() as $timezone)
-                                    <option value="{{ $timezone }}" {{ $timezone == $logged_in_user->timezone ? 'selected' : '' }} {{ $timezone == old('timezone') ? ' selected' : '' }}>{{ $timezone }}</option>
-                                @endforeach
-                            </select>
-                        </div><!--col-->
-                    </div><!--form-group-->
 
                     <div class="form-group row">
                         {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
@@ -117,7 +106,7 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td>
+                                        <td> {{--
                                             @if ($permissions->count())
                                                 @foreach($permissions as $permission)
                                                     <div class="checkbox">
@@ -131,7 +120,7 @@
                                                         {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
                                                     </div>
                                                 @endforeach
-                                            @endif
+                                            @endif --}}
                                         </td>
                                     </tr>
                                 </tbody>

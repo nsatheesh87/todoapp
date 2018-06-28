@@ -62,7 +62,7 @@ class LoginController extends Controller
         /*
          * Check to see if the users account is confirmed and active
          */
-        if (! $user->isConfirmed()) {
+      /*  if (! $user->isConfirmed()) {
             auth()->logout();
 
             // If the user is pending (account approval is on)
@@ -74,6 +74,11 @@ class LoginController extends Controller
 
             throw new GeneralException(__('exceptions.frontend.auth.confirmation.resend', ['url' => route('frontend.auth.account.confirm.resend', $user->{$user->getUuidName()})]));
         } elseif (! $user->isActive()) {
+            auth()->logout();
+            throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
+        } */
+
+        if (! $user->isActive()) {
             auth()->logout();
             throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
         }
@@ -120,7 +125,7 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
 
-        return redirect()->route('frontend.index');
+        return redirect()->route('frontend.auth.login');
     }
 
     /**

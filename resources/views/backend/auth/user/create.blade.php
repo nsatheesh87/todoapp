@@ -83,18 +83,6 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.timezone'))->class('col-md-2 form-control-label')->for('timezone') }}
-
-                            <div class="col-md-10">
-                                <select name="timezone" id="timezone" class="form-control" required="required">
-                                    @foreach (timezone_identifiers_list() as $timezone)
-                                        <option value="{{ $timezone }}" {{ $timezone == config('app.timezone') ? 'selected' : '' }} {{ $timezone == old('timezone') ? ' selected' : '' }}>{{ $timezone }}</option>
-                                    @endforeach
-                                </select>
-                            </div><!--col-->
-                        </div><!--form-group-->
-
-                        <div class="form-group row">
                             {{ html()->label(__('validation.attributes.backend.access.users.active'))->class('col-md-2 form-control-label')->for('active') }}
 
                             <div class="col-md-10">
@@ -105,32 +93,6 @@
                                 </label>
                             </div><!--col-->
                         </div><!--form-group-->
-
-                        <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
-
-                            <div class="col-md-10">
-                                <label class="switch switch-3d switch-primary">
-                                    {{ html()->checkbox('confirmed', true, '1')->class('switch-input') }}
-                                    <span class="switch-label"></span>
-                                    <span class="switch-handle"></span>
-                                </label>
-                            </div><!--col-->
-                        </div><!--form-group-->
-
-                        @if (! config('access.users.requires_approval'))
-                            <div class="form-group row">
-                                {{ html()->label(__('validation.attributes.backend.access.users.send_confirmation_email') . '<br/>' . '<small>' .  __('strings.backend.access.users.if_confirmed_off') . '</small>')->class('col-md-2 form-control-label')->for('confirmation_email') }}
-
-                                <div class="col-md-10">
-                                    <label class="switch switch-3d switch-primary">
-                                        {{ html()->checkbox('confirmation_email', true, '1')->class('switch-input') }}
-                                        <span class="switch-label"></span>
-                                        <span class="switch-handle"></span>
-                                    </label>
-                                </div><!--col-->
-                            </div><!--form-group-->
-                        @endif
 
                         <div class="form-group row">
                             {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
@@ -180,7 +142,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($permissions->count())
+                                                {{--  @if ($permissions->count())
                                                     @foreach($permissions as $permission)
                                                         <div class="checkbox">
                                                             {{ html()->label(
@@ -190,10 +152,11 @@
                                                                     . '<span class="switch-label"></span><span class="switch-handle"></span>')
                                                                 ->class('switch switch-sm switch-3d switch-primary')
                                                                 ->for('permission-'.$permission->id) }}
-                                                            {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                                    {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                </div>
+                                @endforeach
+                                @endif --}}
+
                                             </td>
                                         </tr>
                                         </tbody>

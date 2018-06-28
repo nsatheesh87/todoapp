@@ -58,14 +58,6 @@
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group text-right">
-                                    <a href="{{ route('frontend.auth.password.reset') }}">{{ __('labels.frontend.passwords.forgot_password') }}</a>
-                                </div><!--form-group-->
-                            </div><!--col-->
-                        </div><!--row-->
                     {{ html()->form()->close() }}
 
                     <div class="row">
